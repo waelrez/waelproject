@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Exhibition</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{color:#222;background:url('https://wallpapercave.com/wp/wp2694473.jpg') no-repeat center center fixed;background-size:cover;}
+.overlay{background:linear-gradient(120deg,rgba(255,255,255,0.95),rgba(240,248,255,0.9));min-height:100vh;}
+
+/* LOADING */
+#loader{position:fixed;top:0;left:0;width:100%;height:100%;background:black;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:9999;color:white;}
+#loadingImg{width:90%;max-width:1200px;height:auto;border-radius:15px;transition:0.5s;box-shadow:0 0 50px rgba(0,255,200,0.5);}
+#loadingText{margin-top:15px;font-size:22px;font-weight:600;text-shadow:0 0 10px #00ffcc;}
+.progress{width:400px;height:10px;background:#333;margin-top:15px;border-radius:10px;overflow:hidden;}
+.progress-bar{height:100%;width:0;background:#00ffcc;transition:1s;}
+
+/* HEADER */
+header{background:white;padding:20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:1000;}
+.logo{font-size:26px;font-weight:700;color:#007bff;letter-spacing:1px;}
+.badge{background:#e6f0ff;color:#007bff;padding:6px 14px;border-radius:20px;font-size:13px;margin-left:10px;}
+nav a{margin-left:20px;text-decoration:none;color:#333;font-weight:500;transition:0.3s;}
+nav a:hover{color:#007bff;}
+.quiz-btn{background:linear-gradient(45deg,#007bff,#00c6ff);color:white;padding:12px 22px;border:none;border-radius:10px;cursor:pointer;box-shadow:0 5px 15px rgba(0,198,255,0.3);}
+
+section{padding:60px 20px;max-width:1100px;margin:auto;}
+h2{margin-bottom:25px;color:#007bff;letter-spacing:1px;}
+.card{background:white;padding:25px;border-radius:15px;box-shadow:0 8px 25px rgba(0,0,0,0.15);margin-bottom:25px;transition:0.4s;}
+.card:hover{transform:translateY(-7px);}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:25px;}
+.hero{text-align:center;padding:100px 20px;}
+.hero h1{font-size:50px;color:#007bff;}
+.hero p{opacity:0.8;font-size:18px;}
+.stats{display:flex;justify-content:space-around;flex-wrap:wrap;}
+.stat{background:white;padding:25px;border-radius:12px;margin:12px;box-shadow:0 6px 15px rgba(0,0,0,0.1);}
+.timeline{border-left:4px solid #007bff;padding-left:25px;}
+.timeline div{margin-bottom:25px;}
+footer{text-align:center;padding:25px;background:white;border-top:1px solid #ddd;margin-top:40px;}
+
+/* QUIZ */
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;}
+.modal-content{background:white;padding:35px;border-radius:12px;width:90%;max-width:550px;text-align:center;}
+.modal button{margin:5px;padding:12px 18px;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div id="loader">
+<img id="loadingImg" src="https://wallpapercave.com/wp/wp1810717.jpg">
+<h2 id="loadingText">Loading...</h2>
+<div class="progress"><div class="progress-bar" id="bar"></div></div>
+</div>
+
+<div class="overlay">
+<header>
+<div class="logo">YOUR PROJECT <span class="badge">✔ Verified</span></div>
+<nav>
+<a href="#about">About</a>
+<a href="#projects">Projects</a>
+<a href="#gallery">Gallery</a>
+<a href="#timeline">Timeline</a>
+<a href="#contact">Contact</a>
+</nav>
+<button class="quiz-btn" onclick="openQuiz()">Quiz</button>
+</header>
+
+<section class="hero"><h1>WRITE BIG TITLE HERE</h1><p>SHORT DESCRIPTION HERE...</p></section>
+
+<section id="about"><h2>About</h2>
+<div class="card">WRITE YOUR INTRODUCTION HERE...</div>
+<div class="card">ADD MORE DETAILS HERE...</div>
+</section>
+
+<section id="projects"><h2>Projects</h2>
+<div class="grid">
+<div class="card">PROJECT 1...</div>
+<div class="card">PROJECT 2...</div>
+<div class="card">PROJECT 3...</div>
+<div class="card">PROJECT 4...</div>
+</div></section>
+
+<section id="gallery"><h2>Gallery</h2>
+<div class="grid">
+<div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Water_cycle.png" width="100%"></div>
+<div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hydrologic_cycle.png/800px-Hydrologic_cycle.png" width="100%"></div>
+<div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Water_cycle_blank.svg/800px-Water_cycle_blank.svg.png" width="100%"></div>
+</div></section>
+
+<section id="timeline"><h2>Timeline</h2>
+<div class="timeline">
+<div>STEP 1...</div>
+<div>STEP 2...</div>
+<div>STEP 3...</div>
+</div></section>
+
+<section id="contact"><h2>Contact</h2>
+<div class="card"><p>Email: ___</p><p>Phone: ___</p></div>
+</section>
+
+<footer><p>© 2026 - YOUR NAME</p></footer>
+</div>
+
+<!-- QUIZ -->
+<div class="modal" id="quizModal">
+<div class="modal-content">
+<h3 id="question">Question</h3>
+<div id="answers"></div>
+<p id="score"></p>
+<button onclick="closeQuiz()">Close</button>
+</div>
+</div>
+
+<script>
+// LOADING SYSTEM GTA STYLE
+const images=[
+{img:"https://wallpapercave.com/wp/wp5315322.jpg",text:"Initializing..."},
+{img:"https://wallpapercave.com/wp/wp1810720.jpg",text:"Loading Assets..."},
+{img:"https://wallpapercave.com/wp/wp1810722.jpg",text:"Preparing Data..."},
+{img:"https://wallpapercave.com/wp/wp1810724.jpg",text:"Connecting..."},
+{img:"https://wallpapercave.com/wp/wp1810726.jpg",text:"Ready..."}
+];
+let i=0;
+function load(){
+if(i<images.length){
+document.getElementById('loadingImg').src=images[i].img;
+document.getElementById('loadingText').innerText=images[i].text;
+document.getElementById('bar').style.width=((i+1)*20)+"%";
+i++;setTimeout(load,5000);
+}else{document.getElementById('loader').style.display='none';}
+}
+load();
+
+// QUIZ
+const quiz=[{q:"Q1",a:["A","B","C"],c:0}];
+function openQuiz(){document.getElementById('quizModal').style.display='flex';}
+function closeQuiz(){document.getElementById('quizModal').style.display='none';}
+</script>
+
+</body>
+</html>
