@@ -7,12 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{color:#222;background:url('https://wallpapercave.com/wp/wp2694473.jpg') no-repeat center center fixed;background-size:cover;}
-.overlay{background:linear-gradient(120deg,rgba(255,255,255,0.95),rgba(240,248,255,0.9));min-height:100vh;}
+body{color:#222;background:black;}
+.overlay{background:black;min-height:100vh;}
 
 /* LOADING */
 #loader{position:fixed;top:0;left:0;width:100%;height:100%;background:black;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:9999;color:white;}
-#loadingImg{width:90%;max-width:1200px;height:auto;border-radius:15px;transition:0.5s;box-shadow:0 0 50px rgba(0,255,200,0.5);}
+#loadingImg{width:60%;max-width:800px;height:auto;border-radius:15px;transition:1s;box-shadow:0 0 50px rgba(0,255,200,0.5);}
 #loadingText{margin-top:15px;font-size:22px;font-weight:600;text-shadow:0 0 10px #00ffcc;}
 .progress{width:400px;height:10px;background:#333;margin-top:15px;border-radius:10px;overflow:hidden;}
 .progress-bar{height:100%;width:0;background:#00ffcc;transition:1s;}
@@ -38,6 +38,14 @@ h2{margin-bottom:25px;color:#007bff;letter-spacing:1px;}
 .timeline{border-left:4px solid #007bff;padding-left:25px;}
 .timeline div{margin-bottom:25px;}
 footer{text-align:center;padding:25px;background:white;border-top:1px solid #ddd;margin-top:40px;}
+.thank-btn{margin-top:15px;padding:12px 25px;background:#007bff;color:white;border:none;border-radius:10px;cursor:pointer;transition:0.4s;}
+.thank-btn:hover{background:#00c6ff;}
+.thank-text{font-size:24px;color:#007bff;margin-top:20px;opacity:0;transition:2s;}
+.thank-text.show{opacity:1;animation:fadeInZoom 2s forwards;}
+@keyframes fadeInZoom{
+0%{transform:scale(0.5);opacity:0;}
+100%{transform:scale(1);opacity:1;}
+}
 
 /* QUIZ */
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;}
@@ -83,7 +91,7 @@ footer{text-align:center;padding:25px;background:white;border-top:1px solid #ddd
 
 <section id="gallery"><h2>Gallery</h2>
 <div class="grid">
-<div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Water_cycle.png" width="100%"></div>
+<div class="card"><img src="https://www.shutterstock.com/image-vector/water-purification-process-illustrated-raw-260nw-2691596093.jpg" width="100%"></div>
 <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hydrologic_cycle.png/800px-Hydrologic_cycle.png" width="100%"></div>
 <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Water_cycle_blank.svg/800px-Water_cycle_blank.svg.png" width="100%"></div>
 </div></section>
@@ -96,10 +104,13 @@ footer{text-align:center;padding:25px;background:white;border-top:1px solid #ddd
 </div></section>
 
 <section id="contact"><h2>Contact</h2>
-<div class="card"><p>Email: ___</p><p>Phone: ___</p></div>
+<div class="card"><p>NUMBER: 0619 nmarti makat3tach</p><p>INSTAGRAM: wael_al209</p>
+<button class="thank-btn" onclick="showThanks()">Thank you teacher phisique</button>
+<p class="thank-text" id="thankText">A huge thank you to our teacher! 🙏</p>
+</div>
 </section>
 
-<footer><p>© 2026 - YOUR NAME</p></footer>
+<footer><p>© 2026 - WAEL BRIKI </p></footer>
 </div>
 
 <!-- QUIZ -->
@@ -115,11 +126,11 @@ footer{text-align:center;padding:25px;background:white;border-top:1px solid #ddd
 <script>
 // LOADING SYSTEM GTA STYLE
 const images=[
-{img:"https://wallpapercave.com/wp/wp5315322.jpg",text:"Initializing..."},
-{img:"https://wallpapercave.com/wp/wp1810720.jpg",text:"Loading Assets..."},
-{img:"https://wallpapercave.com/wp/wp1810722.jpg",text:"Preparing Data..."},
-{img:"https://wallpapercave.com/wp/wp1810724.jpg",text:"Connecting..."},
-{img:"https://wallpapercave.com/wp/wp1810726.jpg",text:"Ready..."}
+{img:"",text:"Initializing..."},
+{img:"https://st3.depositphotos.com/1277251/15741/i/450/depositphotos_157415046-stock-photo-muslim-man-raising-hand-and.jpg",text:"قول بسم الله ارحمان الرحيم تبارك الله لا يخسر كولشي"},
+{img:"https://i0.wp.com/www.middleeastmonitor.com/wp-content/uploads/2017/06/20170611_2_24181427_23068436.jpg?fit=1200%2C798&ssl=1",text:"ركزوا مزبان "},
+{img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRCDgTE7oOT5iQCq6SgNLp95Y095uE3Ueisg&s",text:"وتا سكتنا و فيق و بيتوفيق "},
+{img:"https://wallpapercave.com/wp/wp1810726.jpg",text:"هان  نبداو"}
 ];
 let i=0;
 function load(){
@@ -128,14 +139,58 @@ document.getElementById('loadingImg').src=images[i].img;
 document.getElementById('loadingText').innerText=images[i].text;
 document.getElementById('bar').style.width=((i+1)*20)+"%";
 i++;setTimeout(load,5000);
-}else{document.getElementById('loader').style.display='none';}
+}else{document.getElementById('loader').style.display='none';document.body.style.background='black';}
 }
 load();
 
-// QUIZ
-const quiz=[{q:"Q1",a:["A","B","C"],c:0}];
-function openQuiz(){document.getElementById('quizModal').style.display='flex';}
+// QUIZ SYSTEM
+const quiz=[
+{q:"Question 1",a:["True","False"],c:1},
+{q:"Question 2",a:["True","False"],c:0},
+{q:"Question 3",a:["True","False"],c:1},
+{q:"Question 4",a:["True","False"],c:0},
+{q:"Question 5",a:["True","False"],c:1},
+{q:"Question 6",a:["True","False"],c:0},
+{q:"Question 7",a:["True","False"],c:1},
+{q:"Question 8",a:["True","False"],c:0},
+{q:"Question 9",a:["True","False"],c:1},
+{q:"Question 10",a:["True","False"],c:0},
+{q:"Question 11",a:["True","False"],c:1},
+{q:"Question 12",a:["True","False"],c:0},
+{q:"Question 13",a:["True","False"],c:1},
+{q:"Question 14",a:["True","False"],c:0},
+{q:"Question 15",a:["True","False"],c:1},
+{q:"Question 16",a:["True","False"],c:0}
+];
+let current=0;
+let score=0;
+
+function openQuiz(){current=0;score=0;document.getElementById('score').innerText='';showQuestion();document.getElementById('quizModal').style.display='flex';}
 function closeQuiz(){document.getElementById('quizModal').style.display='none';}
+function showQuestion(){
+const q=quiz[current];
+document.getElementById('question').innerText=q.q;
+const ansDiv=document.getElementById('answers');
+ansDiv.innerHTML='';
+q.a.forEach((ans,i)=>{
+const btn=document.createElement('button');
+btn.innerText=ans;
+btn.onclick=()=>{if(i===q.c)score++;nextQuestion();};
+ansDiv.appendChild(btn);
+});
+}
+function nextQuestion(){
+current++;
+if(current<quiz.length){showQuestion();}else{document.getElementById('question').innerText='Quiz Finished!';document.getElementById('answers').innerHTML='Your Score: '+score+' / '+quiz.length;}
+}
+
+// THANK YOU BUTTON
+function showThanks(){document.getElementById('thankText').classList.add('show');}
+
+// GTA cinematic zoom effect
+const loaderImg=document.getElementById('loadingImg');
+let zoom=1;
+setInterval(()=>{zoom=1+0.02*Math.sin(Date.now()/1000);loaderImg.style.transform=`scale(${zoom})`;},50);
 </script>
 
 </body>
